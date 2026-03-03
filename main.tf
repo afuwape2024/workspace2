@@ -45,13 +45,10 @@ module "security_group" {
   vpc_cidr_block = var.cidr_block
 }
 
-module "template_autoscaling" {
-  source = "./7template_autoscaling"
+module "instance" {
+  source ="./instance"
   tier2_vpc = module.network.tier2_vpc
-  ig_tier2 = module.internet_gateway.ig_tier2
-  public_subnet = module.network.public_subnet1
-  public_subnet2 = module.network.public_subnet2
-  private_subnet = module.network.private_subnet1
-  private_subnet2 = module.network.private_subnet2
+  vpc_cidr_block = var.cidr_block
   tier2_public_sg = module.security_group.tier2_public_sg
+  public_subnet = module.network.public_subnet1
 }
