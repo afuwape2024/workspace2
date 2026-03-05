@@ -13,3 +13,8 @@ variable "tier2_public_sg" {}
 variable "public_subnet" {
   description = "Public subnet ID for EC2 instances"
 }
+
+variable "mandatory_tags" {
+  description = "Mandatory tags to apply to resources"
+  type        = map(string)
+}

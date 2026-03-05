@@ -51,4 +51,5 @@ module "instance" {
   vpc_cidr_block = var.cidr_block
   tier2_public_sg = module.security_group.tier2_public_sg
   public_subnet = module.network.public_subnet1
+  mandatory_tags = local.mandatory_tags
 }
