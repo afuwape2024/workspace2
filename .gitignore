@@ -1,0 +1,5 @@
+awsfolder/access_code.sh
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
