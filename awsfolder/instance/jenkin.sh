@@ -51,6 +51,86 @@ sudo mv terraform /usr/local/bin/
 
 
 
+############################################
+######################################### Full Jenkins DevOps Setup Script (Ubuntu)
+# #!/bin/bash
+
+# echo "Updating system..."
+# sudo apt update -y
+
+# echo "Installing required packages..."
+# sudo apt install -y curl wget git unzip gnupg software-properties-common
+
+# echo "Installing Java..."
+# sudo apt install openjdk-17-jdk -y
+
+# echo "Installing Jenkins..."
+# curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | \
+# sudo gpg --dearmor -o /usr/share/keyrings/jenkins-keyring.gpg
+
+# echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] \
+# https://pkg.jenkins.io/debian-stable binary/ | \
+# sudo tee /etc/apt/sources.list.d/jenkins.list
+
+# sudo apt update
+# sudo apt install jenkins -y
+
+# sudo systemctl enable jenkins
+# sudo systemctl start jenkins
+
+# echo "Installing Docker..."
+# sudo apt install docker.io -y
+# sudo systemctl enable docker
+# sudo systemctl start docker
+
+# sudo usermod -aG docker jenkins
+# sudo usermod -aG docker ubuntu
+
+# echo "Installing Maven..."
+# sudo apt install maven -y
+
+# echo "Installing NodeJS..."
+# curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+# sudo apt install nodejs -y
+
+# echo "Installing AWS CLI..."
+# sudo apt install awscli -y
+
+# echo "Installing Terraform..."
+# wget -O- https://apt.releases.hashicorp.com/gpg | \
+# gpg --dearmor | \
+# sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+# echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+# https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+# sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+# sudo apt update
+# sudo apt install terraform -y
+
+# echo "Installing kubectl..."
+# curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+# chmod +x kubectl
+# sudo mv kubectl /usr/local/bin/
+
+# echo "Installing Helm..."
+# curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# echo "Restarting Jenkins..."
+# sudo systemctl restart jenkins
+
+# echo "Setup Complete!"
 
 
-
+# chmod +x jenkins-devops-setup.sh
+# ./jenkins-devops-setup.sh
+# http://EC2_PUBLIC_IP:8080
+# sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+# git --version
+# docker --version
+# mvn -version
+# node -v
+# terraform version
+# kubectl version --client
+# helm version
+# aws --version
