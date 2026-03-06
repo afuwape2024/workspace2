@@ -9,3 +9,4 @@ crash.log
 *.tfstate.backup
 .terraform.tfstate
 .terraform.tfstate.backup
+.access_code.sh

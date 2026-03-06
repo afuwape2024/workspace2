@@ -26,7 +26,7 @@ sudo mv terraform /usr/local/bin/
 # # java -jar jenkins.war --httpPort=8080
 # */
 
-#install jenkins on ec2 instance mac linux
+#install jenkins on ec2 instance Amazon Linux EC2
 # sudo yum update -y
 # sleep 30
 # sudo yum install java-17-amazon-corretto -y
@@ -41,8 +41,13 @@ sudo mv terraform /usr/local/bin/
 # sudo systemctl enable jenkins
 # sudo systemctl status jenkins
 
-#Custom TCP 8080 0.0.0.0/0
-
+#Custom TCP 8080 0.0.0.0/0 #### install git and maven on ec2 instance mac linux
+# sudo dnf install git -y
+# sudo dnf install git docker maven -y
+# sudo systemctl start docker #start docker service
+# sudo systemctl enable docker
+# sudo usermod -aG docker jenkins  #add jenkins user to docker
+# sudo systemctl restart jenkins
 
 
 
