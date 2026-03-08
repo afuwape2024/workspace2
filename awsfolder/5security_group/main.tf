@@ -8,49 +8,58 @@ resource "aws_security_group" "tier2_public_sg" {
   }
 }
 
-# Ingress rule for HTTP (http port 80) from anywhere on the internet
-resource "aws_vpc_security_group_ingress_rule" "http_access" {
+# Ingress rule for HTTP (port 80) from anywhere on the internet
+resource "aws_security_group_rule" "http_access" {
+  type              = "ingress"
   security_group_id = aws_security_group.tier2_public_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 80
   to_port           = 80
-  ip_protocol       = "tcp"
+  protocol          = "tcp"
   description       = "Allow HTTP from the internet"
 }
-# Ingress rule for HTTPS (https 443) from outside the VPC CIDR
-resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
+
+# Ingress rule for HTTPS (port 443) from anywhere on the internet
+resource "aws_security_group_rule" "allow_tls_ipv4" {
+  type              = "ingress"
   security_group_id = aws_security_group.tier2_public_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 443
-  ip_protocol       = "tcp"
   to_port           = 443
+  protocol          = "tcp"
+  description       = "Allow HTTPS from the internet"
 }
-# Ingress rule for SSH (TCP port 22) from a specific CIDR block
-resource "aws_vpc_security_group_ingress_rule" "ssh_access" {
+
+# Ingress rule for SSH (port 22) from anywhere
+resource "aws_security_group_rule" "ssh_access" {
+  type              = "ingress"
   security_group_id = aws_security_group.tier2_public_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 22
   to_port           = 22
-  ip_protocol       = "tcp"
+  protocol          = "tcp"
   description       = "Allow SSH from specific IP range"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "tcp_access" {
+# Ingress rule for application traffic (port 8080)
+resource "aws_security_group_rule" "tcp_access" {
+  type              = "ingress"
   security_group_id = aws_security_group.tier2_public_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 8080
   to_port           = 8080
-  ip_protocol       = "tcp"
-  description       = "Allow SSH from specific IP range"
+  protocol          = "tcp"
+  description       = "Allow TCP 8080 from the internet"
 }
 
-# egress rule to allow all outbound traffic
-resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
+# Egress rule to allow all outbound traffic
+resource "aws_security_group_rule" "allow_all_outbound" {
+  type              = "egress"
   security_group_id = aws_security_group.tier2_public_sg.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 0
   to_port           = 0
-  ip_protocol       = "-1"
+  protocol          = "-1"
   description       = "Allow all outbound traffic"
 }
 
@@ -66,12 +75,13 @@ resource "aws_security_group" "tier2_private_sg" {
   }
 }   
 
-resource "aws_vpc_security_group_ingress_rule" "ssh_access_private" {
+resource "aws_security_group_rule" "ssh_access_private" {
+  type              = "ingress"
   security_group_id = aws_security_group.tier2_private_sg.id
-  cidr_ipv4         = var.vpc_cidr_block
+  cidr_blocks       = [var.vpc_cidr_block]
   from_port         = 22
   to_port           = 22
-  ip_protocol       = "tcp"
+  protocol          = "tcp"
   description       = "Allow SSH from specific IP range"
 }
 
