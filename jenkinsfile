@@ -4,25 +4,23 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main',
-                url: 'https://github.com/afuwape2024/workspace2.git',
+                git branch: 'main', url: 'https://github.com/afuwape2024/workspace2.git'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building project...'
+                echo 'Build stage running'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                echo 'Test stage running'
             }
         }
     }
 }
-
 
 
 // pipeline {
