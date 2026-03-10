@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
+                git branch: 'main',
                 git url: 'https://github.com/afuwape2024/workspace2.git',
-                credentialsId: 'root_user'
             }
         }
 

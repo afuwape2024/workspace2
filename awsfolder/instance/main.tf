@@ -1,6 +1,6 @@
 #create web server ec2 
 resource "aws_instance" "web_server" {
-  count = 1
+  count = 0
   ami     = var.ami
   instance_type = var.instance_type
   subnet_id = var.public_subnet
