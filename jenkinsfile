@@ -11,14 +11,14 @@ pipeline {
         stage('terraform init') {
             steps {
                 echo 'Terraform init stage running'
-                sh 'cd infra && terraform init'
+                sh 'cd awsfolder && terraform init'
             }
         }
 
         stage('terraform plan') {
             steps {
                 echo 'Terraform plan stage running'
-                sh 'cd infra && terraform plan'
+                sh 'cd awsfolder && terraform plan'
             }
         }
     }
