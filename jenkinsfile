@@ -8,15 +8,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('terraform init') {
             steps {
-                echo 'Build stage running'
+                echo 'Terraform init stage running'
+                sh 'cd infra && terraform init'
             }
         }
 
-        stage('Test') {
+        stage('terraform plan') {
             steps {
-                echo 'Test stage running'
+                echo 'Terraform plan stage running'
+                sh 'cd infra && terraform plan'
             }
         }
     }
