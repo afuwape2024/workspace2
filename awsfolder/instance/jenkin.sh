@@ -101,7 +101,11 @@ sudo systemctl restart jenkins
 # kubectl version --client
 # helm version
 
+#######################################################################
 # echo "Jenkins initial admin password:"
 # sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # aws configure 
+# Configure → Build Triggers → Poll SCM → Schedule: * * * * *
+# GitHub → Settings → Webhooks → Add Webhook
+# http://YOUR_JENKINS_URL/github-webhook/
