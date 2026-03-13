@@ -104,6 +104,7 @@ sudo systemctl restart jenkins
 #######################################################################
 # echo "Jenkins initial admin password:"
 # sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+# aws sts get-caller-identity
 
 # aws configure 
 # Configure → Build Triggers → Poll SCM → Schedule: * * * * *
